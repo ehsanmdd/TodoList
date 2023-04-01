@@ -12,7 +12,7 @@ export interface todoType {
 };
 
 interface actionProp {
-  type: "ADD_TODO" | "DELETE_TODD" | "TOGGLECOMPLETE_TODO" | "EDIT_TODO" | "EDITTASK_TODO";
+  type: "ADD_TODO" | "DELETE_TODO" | "TOGGLECOMPLETE_TODO" | "EDIT_TODO" | "EDITTASK_TODO";
   payload: any;
 }
 
@@ -22,7 +22,7 @@ const reducer = (state: any, action: actionProp) => {
       return {
         todos: [...state.todos, action.payload]
       };
-    case 'DELETE_TODD':
+    case 'DELETE_TODO':
       return {
         todos: state.todos.filter((todo: todoType) => todo.id !== action.payload)
       };
@@ -70,7 +70,7 @@ function TodoContainer() {
   };
 
   const deleteTodo = (id: string) => {
-    dispatch({type : "DELETE_TODD" , payload:id});
+    dispatch({type : "DELETE_TODO" , payload:id});
   };
 
   const editTask = (todo: string, id: string) => {
