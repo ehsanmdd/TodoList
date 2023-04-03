@@ -18,7 +18,7 @@ function Todo ({ todo, toggleComplete, deleteTodo, editTodo }: Props) {
         onClick={() => toggleComplete(todo.id)}
         className={`${todo.completed ? "completed" : ""}`}
       >
-        {todo.todo}
+        {todo.title}
       </p>
       <div>
         <FontAwesomeIcon

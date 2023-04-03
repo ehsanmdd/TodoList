@@ -6,13 +6,13 @@ import Todo from "./Todo";
 
 export interface todoType {
   id: string;
-  todo: string;
+  title: string;
   completed: boolean;
   isEditing: boolean;
 };
 
 interface actionProp {
-  type: "ADD_TODO" | "DELETE_TODO" | "TOGGLECOMPLETE_TODO" | "EDIT_TODO" | "EDITTASK_TODO";
+  type: "ADD_TODO" | "DELETE_TODO" | "TOGGLE_COMPLETE_TODO" | 'EDIT_TODO' | "EDIT_TASK_TODO";
   payload: any;
 }
 
@@ -26,7 +26,7 @@ const reducer = (state: any, action: actionProp) => {
       return {
         todos: state.todos.filter((todo: todoType) => todo.id !== action.payload)
       };
-    case 'TOGGLECOMPLETE_TODO':
+    case 'TOGGLE_COMPLETE_TODO':
       return {
         todos: state.todos.map((todo: todoType) => todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo)
       };
@@ -34,7 +34,7 @@ const reducer = (state: any, action: actionProp) => {
       return {
         todos: state.todos.map((todo: todoType) => todo.id === action.payload ? { ...todo, isEditing: !todo.isEditing } : todo)
       };
-    case 'EDITTASK_TODO':
+    case 'EDIT_TASK_TODO':
       return {
         todos: state.todos.map((todoItem: todoType) => todoItem.id === action.payload.y ? { ...todoItem , todo:action.payload.x, isEditing: !todoItem.isEditing } : todoItem)
       };
@@ -54,7 +54,7 @@ function TodoContainer() {
   const addTodo = (todo: string) => {
     let newTodo: todoType = {
       id: idx,
-      todo: todo,
+      title: todo,
       completed: false,
       isEditing: false,
     };
@@ -62,7 +62,7 @@ function TodoContainer() {
   };
 
   const toggleComplete = (id: string) => {
-    dispatch({type: "TOGGLECOMPLETE_TODO", payload:id});
+    dispatch({type: "TOGGLE_COMPLETE_TODO", payload:id});
   };
 
   const editTodo = (id: string) => {
@@ -74,7 +74,7 @@ function TodoContainer() {
   };
 
   const editTask = (todo: string, id: string) => {
-    dispatch({type : "EDITTASK_TODO" , payload:{x:todo,y:id}, });
+    dispatch({type : "EDIT_TASK_TODO" , payload:{x:todo,y:id}, });
   };
 
   return (

@@ -1,9 +1,9 @@
-import { useState, useReducer } from "react";
+import { useState } from "react";
 
 
 
 interface Props {
-  addTodo: (todo: any) => void;
+  addTodo: (todo: string) => void;
 }
 
 function Form ({ addTodo } : Props) {

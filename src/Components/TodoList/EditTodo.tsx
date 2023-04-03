@@ -4,12 +4,12 @@ import { todoType } from "./TodoContainer";
 
 
 interface Props  {
-  editTodo: (todo: any, id: string) => void
+  editTodo: (todo: string, id: string) => void
   todo : todoType
 }
 
 function EditTodo ({ editTodo, todo}: Props) {
-  const [value, setValue] = useState(todo.todo);
+  const [value, setValue] = useState(todo.title);
 
   const handelSubmit = (event: any) => {
     event.preventDefault();
